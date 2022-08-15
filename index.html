@@ -6,7 +6,18 @@
   </head>
   <body>
 
-    <h1>"Home Page"</h1>
+
+<%    if(kindOfDay === "Saturday"){ %>
+  <h1 style = "color:purple">Today is <%= kindOfDay %></h1>
+<%    }else{     %>
+  <h1 style = "color:blue">Today is <%= kindOfDay %></h1>
+<%    } %>
+
+  <form action="/" method="post">
+    <input type="text" name="item" placeholder="item">
+    <button type="submit" name="button">add</button>
+
+  </form>
 
   </body>
 </html>
