@@ -20,21 +20,26 @@
   <h1 class="box" id="heading"> <%= kindOfDay %></h1>
 
   <div class="box">
-    <ul>
       <!-- <li>first</li>
     <li>section</li> -->
 
-      <%  for(var i=0; i<newItem.length; i++){  %>
-      <div class="item">
-        <input type="checkbox" >
-        <p> <%= newItem[i] %></p>
+      <%  newItem.forEach(function(item){  %>
+    <form class="" action="/" method="post">
+
+      <div class="item" id = "formName">
+          <input type ="checkbox" name="cBox"  value = <%= item._id %> onchange="this.form.submit()"></input>
+
+        <!-- <input type="checkbox" > -->
+        <p> <%= item.name %></p>
       </div>
-      <%  }  %>
-    </ul>
+
+      </form>
+
+      <%  } ) %>
 
     <form class="item" action="/" method="post">
       <input type="text" name="item" placeholder="item" autocomplete="off">
-      <button type="submit" name="submit">+</button>
+      <button type="submit" name="cBox" value = "add">+</button>
     </form>
 
   </div>
