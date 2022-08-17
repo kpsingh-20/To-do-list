@@ -11,27 +11,28 @@
 <body>
 
 
-  <!-- <%    if(kindOfDay === "Saturday"){ %>
-  <h1 style = "color:purple"> <%= kindOfDay %></h1>
+  <!-- <%    if(List === "Saturday"){ %>
+  <h1 style = "color:purple"> <%= List %></h1>
 <%    }else{     %>
-  <h1 style = "color:blue"> <%= kindOfDay %></h1>
+  <h1 style = "color:blue"> <%= List %></h1>
 <%    } %> -->
 
-  <h1 class="box" id="heading"> <%= kindOfDay %></h1>
+  <h1 class="box" id="heading"> <%= List %></h1>
 
   <div class="box">
       <!-- <li>first</li>
     <li>section</li> -->
 
       <%  newItem.forEach(function(item){  %>
-    <form class="" action="/" method="post">
+    <form class="" action="/delete" method="post">
 
       <div class="item" id = "formName">
-          <input type ="checkbox" name="cBox"  value = <%= item._id %> onchange="this.form.submit()"></input>
+          <input type ="checkbox" name="checkBox"  value = <%= item._id %> onchange="this.form.submit()"></input>
 
         <!-- <input type="checkbox" > -->
         <p> <%= item.name %></p>
       </div>
+      <input type="hidden" name="listName" value="<%= List %>"> </input>
 
       </form>
 
@@ -39,7 +40,7 @@
 
     <form class="item" action="/" method="post">
       <input type="text" name="item" placeholder="item" autocomplete="off">
-      <button type="submit" name="cBox" value = "add">+</button>
+      <button type="submit" name="submit" value =<%= List  %>  >+</button>
     </form>
 
   </div>
