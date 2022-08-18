@@ -11,7 +11,22 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB");
+mongoose.connect("mongodb+srv://kpsingh_20:Test-123@cluster0.clnldqj.mongodb.net/todolistDB");
+
+// const uri = "mongodb+srv://admin-kpsingh_20:Test-123@cluster0.clnldqj.mongodb.net/todolistDB";
+// mongoose.connect("mongodb+srv://admikpsingh_20:Test-123@cluster0.clnldqj.mongodb.net/todolistDB", {
+// 	useUnifiedTopology: true,
+// 	useNewUrlParser: true,
+// 	useCreateIndex: true,
+// });
+// const connection = mongoose.connection;
+//
+// connection.once('open', () => {
+// 		console.log('mongoDB database connection established');
+// 	})
+// 	.on('error', (err) => {
+// 		console.log('Error: ', err);
+// 	});
 
 const itemSchema = new mongoose.Schema({
     name : String
