@@ -62,7 +62,16 @@ app.post("/", function(req, res){
           name : req.body.item
       })
 
-      const dbName = req.body.submit;
+      const dbName = _.lowerCase(req.body.submit);
+
+      if(dbName === "today"){
+          Item.insertMany([object], function(err){
+              if(err){
+                  console.log(err);
+              }
+          });
+          res.redirect("/");
+      }
       const ITEMX = mongoose.model(dbName, itemSchema);
 
       ITEMX.insertMany([object], function(err){});
