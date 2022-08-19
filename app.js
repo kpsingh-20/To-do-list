@@ -11,22 +11,10 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static("public"));
 
+// mongoose.connect("mongodb://localhost:27017/todolistDB");
 mongoose.connect("mongodb+srv://kpsingh_20:Test-123@cluster0.clnldqj.mongodb.net/todolistDB");
+// mongoose.connect("mongodb://kpsingh_20:Test-123@cluster0.clnldqj.mongodb.net/todolistDB");      //when lan is connected
 
-// const uri = "mongodb+srv://admin-kpsingh_20:Test-123@cluster0.clnldqj.mongodb.net/todolistDB";
-// mongoose.connect("mongodb+srv://admikpsingh_20:Test-123@cluster0.clnldqj.mongodb.net/todolistDB", {
-// 	useUnifiedTopology: true,
-// 	useNewUrlParser: true,
-// 	useCreateIndex: true,
-// });
-// const connection = mongoose.connection;
-//
-// connection.once('open', () => {
-// 		console.log('mongoDB database connection established');
-// 	})
-// 	.on('error', (err) => {
-// 		console.log('Error: ', err);
-// 	});
 
 const itemSchema = new mongoose.Schema({
     name : String
@@ -74,7 +62,7 @@ app.post("/", function(req, res){
 
 
       let object = new Item({
-          name : req.body.item
+            name : req.body.item
       })
 
       const dbName = _.lowerCase(req.body.submit);
@@ -86,11 +74,12 @@ app.post("/", function(req, res){
               }
           });
           res.redirect("/");
-      }
-      const ITEMX = mongoose.model(dbName, itemSchema);
+      }else{
+          const ITEMX = mongoose.model(dbName, itemSchema);
 
-      ITEMX.insertMany([object], function(err){});
-      res.redirect("/" + dbName);
+          ITEMX.insertMany([object], function(err){});
+          res.redirect("/" + dbName);
+      }
       // object.save();
       // res.redirect("/");
 });
@@ -111,13 +100,13 @@ app.post("/delete", function(req, res){
             }
         });
         res.redirect("/");
-    }
-    //
+    }else {
     const ItemDb = mongoose.model(dbName, itemSchema);
     ItemDb.deleteOne({_id : itemId}, function(err){
 
     });
     res.redirect("/" + dbName);
+}
 
 });
 
